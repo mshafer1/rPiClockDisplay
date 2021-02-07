@@ -98,8 +98,7 @@ class LCD:
         self.lcd_write(0x03)
         self.lcd_write(0x02)
 
-        self.lcd_write(
-                LCD_FUNCTIONSET | LCD_2LINE | LCD_5x8DOTS | LCD_4BITMODE)
+        self.lcd_write(LCD_FUNCTIONSET | LCD_2LINE | LCD_5x8DOTS | LCD_4BITMODE)
         self.lcd_write(LCD_DISPLAYCONTROL | LCD_DISPLAYON)
         self.lcd_write(LCD_CLEARDISPLAY)
         self.lcd_write(LCD_ENTRYMODESET | LCD_ENTRYLEFT)
@@ -108,9 +107,9 @@ class LCD:
     def lcd_strobe(self, data):
         """Clocks EN to latch command"""
         self.lcd_device.write_cmd(data | En | LCD_BACKLIGHT)
-        time.sleep(.0005)
+        time.sleep(0.0005)
         self.lcd_device.write_cmd(((data & ~En) | LCD_BACKLIGHT))
-        time.sleep(.0001)
+        time.sleep(0.0001)
 
     def lcd_write_four_bits(self, data):
         self.lcd_device.write_cmd(data | LCD_BACKLIGHT)
