@@ -1,13 +1,18 @@
-#!/usr/bin/env python
-# from: https://github.com/Howchoo/smart-alarm-clock/blob/master/display.py
+#!/usr/bin/env python3
 
-import i2c_driver
+import I2C_LCD_driver
 import time
 
+def main():
+    mylcd = I2C_LCD_driver.lcd()
 
-mylcd = i2c_driver.LCD()
+    while True:
+        display_time = time.strftime('%I:%M %p')
+        if display_time.startswith("0"):
+            display_time = " " + display_time.lstrip("0")
+        mylcd.lcd_display_string(display_time, 1)
+        mylcd.lcd_display_string(time.strftime('%A %B %d, %Y'), 2)
+        time.sleep(1)
 
-
-while True:
-    mylcd.lcd_display_string(time.strftime('%I:%M:%S %p'), 1)
-    mylcd.lcd_display_string(time.strftime('%a %b %d, 20%y'), 2)
+if __name__ == "__main__":
+    main()
