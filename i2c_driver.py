@@ -1,11 +1,14 @@
 # From https://github.com/Howchoo/smart-alarm-clock
+# edits:
+# mshafer1 - move ADDRESS to being loaded from seperate config file
 
 import smbus
 import time
 
+import config
 
 # LCD Address
-ADDRESS = 0x27
+ADDRESS = config.ADDRESS
 
 # commands
 LCD_CLEARDISPLAY = 0x01
