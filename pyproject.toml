@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "rpiclockdisplay"
+name = "rpi-clock-display"
 version = "0.1.0"
 description = "a raspberry pi based clock display"
 authors = ["mshafer1"]
@@ -19,3 +19,6 @@ ni-python-styleguide = "^0.1.4"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+rPiClockDisplay = 'rpi_clock_display.display:main'
