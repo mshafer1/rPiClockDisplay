@@ -9,7 +9,7 @@ def main(n=-1):
     mylcd = i2c_driver.LCD()
 
     i = 0
-    while i < n:
+    while n > 0 and i < n:
         i += 1
         display_time = datetime.now().strftime("%I:%M %p")
         if display_time.startswith("0"):
