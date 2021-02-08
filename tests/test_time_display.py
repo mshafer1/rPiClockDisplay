@@ -14,7 +14,7 @@ import datetime
 def test___current_time__display__writes_expected_string_to_display(
     current_time, expected_string, mock_i2c_driver, freezer
 ):
-    import display
+    from rpi_clock_display import display
 
     freezer.move_to(current_time)
 

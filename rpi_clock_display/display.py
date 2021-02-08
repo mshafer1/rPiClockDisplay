@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import i2c_driver
+from . import i2c_driver
 from datetime import datetime
 import time
 
@@ -18,7 +18,7 @@ def main(n=-1):
 
         display_date_parts = [
             datetime.now().strftime("%A %B"),
-            f'{datetime.now().strftime("%d").lstrip("0"): >2},',
+            '{: >2},'.format(datetime.now().strftime("%d").lstrip("0")),
             datetime.now().strftime("%Y"),
         ]
 

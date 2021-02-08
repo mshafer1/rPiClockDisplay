@@ -13,7 +13,7 @@ def mock_smbus(mocker):
 
 @pytest.fixture()
 def mock_i2c_driver(mocker, mock_smbus):
-    import i2c_driver
+    from rpi_clock_display import i2c_driver
 
     mock = mocker.patch.object(i2c_driver, "LCD")
 

@@ -5,7 +5,7 @@
 import smbus
 import time
 
-import config
+from . import config
 
 # LCD Address
 ADDRESS = config.ADDRESS
