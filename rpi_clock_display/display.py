@@ -18,7 +18,7 @@ def main(n=-1):
 
         display_date_parts = [
             datetime.now().strftime("%A %B"),
-            '{: >2},'.format(datetime.now().strftime("%d").lstrip("0")),
+            "{: >2},".format(datetime.now().strftime("%d").lstrip("0")),
             datetime.now().strftime("%Y"),
         ]
 
