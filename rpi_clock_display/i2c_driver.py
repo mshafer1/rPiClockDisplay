@@ -174,6 +174,8 @@ class LCD:
             pos_new = 0x14 + pos
         elif line == 4:
             pos_new = 0x54 + pos
+        else:
+            raise Exception(f"invalid line: {line}")
 
         self.lcd_write(0x80 + pos_new)
 
