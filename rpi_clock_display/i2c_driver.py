@@ -5,7 +5,7 @@
 import smbus
 import time
 
-from . import config
+from rpi_clock_display import config
 
 # LCD Address
 ADDRESS = config.ADDRESS
