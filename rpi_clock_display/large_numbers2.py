@@ -256,6 +256,21 @@ def write_big(lcd, char, pos):
             lcd.lcd_display_string_pos(chr(parts[i * width + j]), i+1, pos + j)
         # break
 
+def write_time(mylcd, hours, minutes):
+    hour_tens = hours // 10 or ' '
+    hour_ones = hours % 10
+
+    minutes_tens = minutes // 10
+    minutes_ones = minutes % 10
+
+    write_big(mylcd, hour_tens, 0)
+    write_big(mylcd, hour_ones, 5)
+    write_big(mylcd, ':', 10)
+    write_big(mylcd, minutes_tens, 11)
+    write_big(mylcd, minutes_ones, 16)
+   
+    
+
 
 if __name__ == "__main__":
     from rpi_clock_display import i2c_driver
@@ -266,13 +281,28 @@ if __name__ == "__main__":
     generate_big(mylcd)
 
     import time
-    for i in range(6):
-        write_big(mylcd, ' ', i*4) # isn't there a clear??
-    write_big(mylcd, 1, 0)
-    write_big(mylcd, 1, 5)
-    write_big(mylcd, ':', 10)
-    write_big(mylcd, 5, 11)
-    write_big(mylcd, 8, 16)
+    while True:
+        for i in range(6):
+            write_big(mylcd, ' ', i*4) # isn't there a clear??
+        write_big(mylcd, 2, 0)
+        write_big(mylcd, 3, 5)
+        write_big(mylcd, ':', 10)
+        write_big(mylcd, 4, 11)
+        write_big(mylcd, 5, 16)
+        time.sleep(2)
+        write_big(mylcd, 1, 0)
+        write_big(mylcd, 6, 5)
+        write_big(mylcd, ':', 10)
+        write_big(mylcd, 7, 11)
+        write_big(mylcd, 8, 16)
+        time.sleep(2)
+        write_big(mylcd, 9, 0)
+        write_big(mylcd, 8, 5)
+        write_big(mylcd, ':', 10)
+        write_big(mylcd, 8, 11)
+        write_big(mylcd, 9, 16)
+        time.sleep(2)
+
 #    write_big(mylcd, 6, 9)
 #    while True:
 #        for i in range(8):
