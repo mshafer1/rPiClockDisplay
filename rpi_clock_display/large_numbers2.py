@@ -185,6 +185,16 @@ CHAR_MAP = {
             BOTTOM_RIGHT,
       ]
     ],
+    7: [
+        CHAR_REVERSE_LOOKUP[tuple(o)] if isinstance(o, list) else o
+        for o in [TOP_BAR]*3 + [TOP_RIGHT] + [
+            SPACE,
+            SPACE,
+            SPACE,
+            RIGHT_BAR,
+        ]
+        * 3
+    ],
     8: [ CHAR_REVERSE_LOOKUP[tuple(o)] if isinstance(o, list) else o
          for o in [
             TOP_LEFT,
