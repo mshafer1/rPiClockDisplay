@@ -215,7 +215,30 @@ CHAR_MAP = {
             BOTTOM_LEFT,
             BOTTOM_BAR,
             BOTTOM_BAR,
-            BOTTOM_RIGHT,           
+            BOTTOM_RIGHT,
+       ]
+    ],
+    9: [ CHAR_REVERSE_LOOKUP[tuple(o)] if isinstance(o, list) else o
+         for o in [
+            TOP_LEFT,
+            TOP_BAR,
+            TOP_BAR,
+            TOP_RIGHT,
+
+            LEFT_BAR,
+            SPACE,
+            SPACE,
+            RIGHT_BAR,
+
+            TOP_BAR,
+            TOP_BAR,
+            TOP_BAR,
+            TOP_RIGHT,
+
+            SPACE,
+            SPACE,
+            SPACE,
+            RIGHT_BAR,
        ]
     ],
     ':': [ CHAR_REVERSE_LOOKUP[tuple(o)] if isinstance(o, list) else o
