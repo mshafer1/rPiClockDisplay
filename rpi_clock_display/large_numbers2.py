@@ -14,7 +14,7 @@ RIGHT_BAR = [RIGHT_THREE] * 8
 
 TOP_RIGHT = [FULL_WIDTH - 2 ** n for n in range(3)] + [RIGHT_THREE] * 5
 
-TOP_LEFT = [FULL_WIDTH - 2 ** n for n in range(4, 1, -1)] + [RIGHT_THREE] * 5
+TOP_LEFT = [FULL_WIDTH - 2 ** n for n in range(4, 1, -1)] + [LEFT_THREE] * 5
 
 BOTTOM_RIGHT = [RIGHT_THREE] * 5 + [FULL_WIDTH - 2 ** n for n in range(3, 0, -1)]
 
@@ -70,14 +70,135 @@ CHAR_MAP = {
         ]
         * 4
     ],
+    2: [ CHAR_REVERSE_LOOKUP[tuple(o)] if isinstance(o, list) else o
+         for o in [
+            TOP_BAR,
+            TOP_BAR,
+            TOP_BAR,
+            TOP_RIGHT,
+
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_RIGHT,
+
+            LEFT_BAR,
+            SPACE,
+            SPACE,
+            SPACE,
+
+            BOTTOM_LEFT,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+      ]
+    ],
+    3: [ CHAR_REVERSE_LOOKUP[tuple(o)] if isinstance(o, list) else o
+         for o in [
+            TOP_BAR,
+            TOP_BAR,
+            TOP_BAR,
+            TOP_RIGHT,
+
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_RIGHT,
+
+            SPACE,
+            SPACE,
+            SPACE,
+            RIGHT_BAR,
+
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_RIGHT,
+      ]
+    ],
+    5: [ CHAR_REVERSE_LOOKUP[tuple(o)] if isinstance(o, list) else o
+         for o in [
+            TOP_LEFT,
+            TOP_BAR,
+            TOP_BAR,
+            TOP_BAR,
+
+            BOTTOM_LEFT,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+
+            SPACE,
+            SPACE,
+            SPACE,
+            RIGHT_BAR,
+
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_RIGHT,
+      ]
+    ],
+    6: [ CHAR_REVERSE_LOOKUP[tuple(o)] if isinstance(o, list) else o
+         for o in [
+            TOP_LEFT,
+            TOP_BAR,
+            TOP_BAR,
+            TOP_BAR,
+
+            BOTTOM_LEFT,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+
+            LEFT_BAR,
+            SPACE,
+            SPACE,
+            RIGHT_BAR,
+
+            BOTTOM_LEFT,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_RIGHT,
+      ]
+    ],
+    8: [ CHAR_REVERSE_LOOKUP[tuple(o)] if isinstance(o, list) else o
+         for o in [
+            TOP_LEFT,
+            TOP_BAR,
+            TOP_BAR,
+            TOP_RIGHT,
+
+            LEFT_BAR,
+            SPACE,
+            SPACE,
+            RIGHT_BAR,
+
+            TOP_LEFT,
+            TOP_BAR,
+            TOP_BAR,
+            TOP_RIGHT,
+
+            BOTTOM_LEFT,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_RIGHT,           
+       ]
+    ],
+    ':': [ CHAR_REVERSE_LOOKUP[tuple(o)] if isinstance(o, list) else o
+       for o in ([SPACE] * 1 + [TOP_BAR] * 2 + [SPACE]*1)
+    ],
+    ' ': [ CHAR_REVERSE_LOOKUP[tuple(o)] if isinstance(o, list) else o for o in [SPACE]*16],
 }
 
 
 def write_big(lcd, char, pos):
     parts = CHAR_MAP[char]
-    for i in range(4):
-        for j in range(4):
-            lcd.lcd_display_string_pos(chr(parts[i * 4 + j]), j+1, pos + i)
+    width = 4 if char != ':' else 1
+    for i in range(4): # y
+        for j in range(width): # x
+            lcd.lcd_display_string_pos(chr(parts[i * width + j]), i+1, pos + j)
+        # break
 
 
 if __name__ == "__main__":
@@ -89,14 +210,30 @@ if __name__ == "__main__":
     generate_big(mylcd)
 
     import time
-    while True:
-        write_big(mylcd, 0, 0)
-        write_big(mylcd, 0, 5)
-        write_big(mylcd, 0, 11)
-        write_big(mylcd, 0, 16)
-        time.sleep(2)
-        write_big(mylcd, 1, 0)
-        write_big(mylcd, 1, 5)
-        write_big(mylcd, 1, 11)
-        write_big(mylcd, 1, 16)
+    for i in range(6):
+        write_big(mylcd, ' ', i*4) # isn't there a clear??
+    write_big(mylcd, 1, 0)
+    write_big(mylcd, 1, 5)
+    write_big(mylcd, ':', 10)
+    write_big(mylcd, 5, 11)
+    write_big(mylcd, 8, 16)
+#    write_big(mylcd, 6, 9)
+#    while True:
+#        for i in range(8):
+#            for j in range(4):
+#               mylcd.lcd_display_string_pos(chr(i), j+1, i+1)
+#        time.sleep(2)
+#        write_big(mylcd, 0, 0)
+#        time.sleep(1)
+
+#    while True:
+#        write_big(mylcd, 0, 0)
+#        write_big(mylcd, 0, 5)
+#        write_big(mylcd, 0, 11)
+#        write_big(mylcd, 0, 16)
+#        time.sleep(2)
+#        write_big(mylcd, 1, 0)
+#        write_big(mylcd, 1, 5)
+#        write_big(mylcd, 1, 11)
+#        write_big(mylcd, 1, 16)
 
