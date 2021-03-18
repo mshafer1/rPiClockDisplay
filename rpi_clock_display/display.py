@@ -19,7 +19,7 @@ def main(n=-1):
     while n < 0 or i < n:
         i += 1
         now = datetime.now()
-        large_numbers2.write_time(mylcd, now.hour, now.minute)
+        large_numbers2.write_time(mylcd, now.hour - 12 if now.hour > 12 else now.hour, now.minute)
         display_time = datetime.now().strftime("%I : %M %p")
         logging.info("display time: %s", display_time)
         #if display_time.startswith("0"):
