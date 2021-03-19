@@ -268,10 +268,10 @@ def write_time(mylcd, hours, minutes):
     minutes_ones = minutes % 10
 
     write_big(mylcd, hour_tens, -2)
-    write_big(mylcd, hour_ones, 4)
-    write_big(mylcd, ':', 9)
-    write_big(mylcd, minutes_tens, 11)
-    write_big(mylcd, minutes_ones, 16)
+    write_big(mylcd, hour_ones, 3)
+    write_big(mylcd, ':', 8)
+    write_big(mylcd, minutes_tens, 10)
+    write_big(mylcd, minutes_ones, 15)
    
     
 
