@@ -253,7 +253,11 @@ def write_big(lcd, char, pos):
     width = 4 if char != ':' else 1
     for i in range(4): # y
         for j in range(width): # x
-            lcd.lcd_display_string_pos(chr(parts[i * width + j]), i+1, pos + j)
+            y = i + 1
+            x = pos + j
+            if y < 0 or x < 0:
+                continue
+            lcd.lcd_display_string_pos(chr(parts[i * width + j]), y, x)
         # break
 
 def write_time(mylcd, hours, minutes):
@@ -263,9 +267,9 @@ def write_time(mylcd, hours, minutes):
     minutes_tens = minutes // 10
     minutes_ones = minutes % 10
 
-    write_big(mylcd, hour_tens, 0)
-    write_big(mylcd, hour_ones, 5)
-    write_big(mylcd, ':', 10)
+    write_big(mylcd, hour_tens, -2)
+    write_big(mylcd, hour_ones, 4)
+    write_big(mylcd, ':', 9)
     write_big(mylcd, minutes_tens, 11)
     write_big(mylcd, minutes_ones, 16)
    
