@@ -16,9 +16,9 @@ TOP_RIGHT = [FULL_WIDTH - 2 ** n for n in range(3)] + [RIGHT_THREE] * 5
 
 TOP_LEFT = [FULL_WIDTH - 2 ** n for n in range(4, 1, -1)] + [LEFT_THREE] * 5
 
-BOTTOM_RIGHT = [RIGHT_THREE] * 5 + [FULL_WIDTH - 2 ** n for n in range(3, 0, -1)]
+BOTTOM_RIGHT = [RIGHT_THREE] * 5 + [FULL_WIDTH - 2 ** n for n in range(2, -1, -1)]
 
-BOTTOM_LEFT = [LEFT_THREE] * 5 + [FULL_WIDTH - 2 ** n for n in range(2, 5)]
+BOTTOM_LEFT = [LEFT_THREE] * 5 + [FULL_WIDTH - 2 ** n for n in range(2,5)]
 
 CHAR_LIST = [
     TOP_BAR,
@@ -46,14 +46,17 @@ CHAR_MAP = {
             TOP_BAR,
             TOP_BAR,
             TOP_RIGHT,
+
             LEFT_BAR,
             SPACE,
             SPACE,
             RIGHT_BAR,
+
             LEFT_BAR,
             SPACE,
             SPACE,
             RIGHT_BAR,
+
             BOTTOM_LEFT,
             BOTTOM_BAR,
             BOTTOM_BAR,
@@ -202,15 +205,15 @@ CHAR_MAP = {
             TOP_BAR,
             TOP_RIGHT,
 
+            BOTTOM_LEFT,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_RIGHT,
+
             LEFT_BAR,
             SPACE,
             SPACE,
             RIGHT_BAR,
-
-            TOP_LEFT,
-            TOP_BAR,
-            TOP_BAR,
-            TOP_RIGHT,
 
             BOTTOM_LEFT,
             BOTTOM_BAR,
@@ -225,15 +228,15 @@ CHAR_MAP = {
             TOP_BAR,
             TOP_RIGHT,
 
-            LEFT_BAR,
+            BOTTOM_LEFT,
+            BOTTOM_BAR,
+            BOTTOM_BAR,
+            BOTTOM_RIGHT,
+
+            SPACE,
             SPACE,
             SPACE,
             RIGHT_BAR,
-
-            TOP_BAR,
-            TOP_BAR,
-            TOP_BAR,
-            TOP_RIGHT,
 
             SPACE,
             SPACE,
@@ -272,8 +275,6 @@ def write_time(mylcd, hours, minutes):
     write_big(mylcd, ':', 8)
     write_big(mylcd, minutes_tens, 10)
     write_big(mylcd, minutes_ones, 15)
-   
-    
 
 
 if __name__ == "__main__":
@@ -285,28 +286,26 @@ if __name__ == "__main__":
     generate_big(mylcd)
 
     import time
-    while True:
+    if True:
         for i in range(6):
             write_big(mylcd, ' ', i*4) # isn't there a clear??
-        write_big(mylcd, 2, 0)
-        write_big(mylcd, 3, 5)
-        write_big(mylcd, ':', 10)
-        write_big(mylcd, 4, 11)
-        write_big(mylcd, 5, 16)
-        time.sleep(2)
-        write_big(mylcd, 1, 0)
-        write_big(mylcd, 6, 5)
-        write_big(mylcd, ':', 10)
-        write_big(mylcd, 7, 11)
-        write_big(mylcd, 8, 16)
-        time.sleep(2)
-        write_big(mylcd, 9, 0)
-        write_big(mylcd, 8, 5)
-        write_big(mylcd, ':', 10)
-        write_big(mylcd, 8, 11)
-        write_big(mylcd, 9, 16)
-        time.sleep(2)
 
+ #   while True:
+    if True:
+        hour_tens = 1
+        hour_ones = 6
+
+        minutes_tens = 8
+        minutes_ones = '82'
+
+        write_big(mylcd, hour_tens, -2)
+        write_big(mylcd, hour_ones, 3)
+        write_big(mylcd, ':', 8)
+        write_big(mylcd, minutes_tens, 10)
+        write_big(mylcd, minutes_ones, 15)
+
+#        write_time(mylcd, 18, 68)
+#        time.sleep(10)
 #    write_big(mylcd, 6, 9)
 #    while True:
 #        for i in range(8):
