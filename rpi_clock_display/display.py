@@ -5,8 +5,28 @@ from rpi_clock_display import i2c_driver
 from datetime import datetime
 import time
 import logging
+
 from . import backlight
 from . import large_numbers2
+
+
+def _hours_to_12_mode(hours):
+    """
+    >>> _hours_to_12_mode(0)
+    12
+    >>> _hours_to_12_mode(1)
+    1
+    >>> _hours_to_12_mode(13)
+    1
+    >>> _hours_to_12_mode(14)
+    2
+    """
+    result = hours
+    if result > 12:
+        result -= 12
+    elif result == 0:
+        result += 12
+    return result
 
 def main(n=-1):
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s")
@@ -19,7 +39,8 @@ def main(n=-1):
     while n < 0 or i < n:
         i += 1
         now = datetime.now()
-        large_numbers2.write_time(mylcd, now.hour - 12 if now.hour > 12 else now.hour, now.minute)
+        hours = _hours_to_12_mode(now.hour)
+        large_numbers2.write_time(mylcd, hours, now.minute)
         display_time = datetime.now().strftime("%I : %M %p")
         logging.info("display time: %s", display_time)
         #if display_time.startswith("0"):
